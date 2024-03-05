@@ -46,9 +46,10 @@ const login = async(req,res)=>{
 
 const getAllUsers = async(req,res)=>{
     const user = await User.find({})
+    const newUserlist = user.map(({_id,name,email})=>({_id,name,email}))
     if(!user)
         res.status(StatusCodes.OK).json('No users found - create a user')
-    res.status(StatusCodes.OK).json({user})
+    res.status(StatusCodes.OK).json({user:newUserlist})
 }
 
 module.exports = {register,login,getAllUsers}
