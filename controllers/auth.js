@@ -44,4 +44,11 @@ const login = async(req,res)=>{
     res.status(StatusCodes.OK).json({user:{name: user.name},token})
 }
 
-module.exports = {register,login}
+const getAllUsers = async(req,res)=>{
+    const user = await User.find({})
+    if(!user)
+        res.status(StatusCodes.OK).json('No users found - create a user')
+    res.status(StatusCodes.OK).json({user})
+}
+
+module.exports = {register,login,getAllUsers}
